@@ -14,12 +14,16 @@ const PORT = process.env.PORT || 4000;
 
 // Middlewares globales
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: [
+    'http://localhost:3000',
+    'https://fitnessstudio-frontend.vercel.app',
+    process.env.FRONTEND_URL
+  ],
   credentials: true
 }));
 app.use(express.json());
 
-// Ruta de salud (para verificar que el servidor corre)
+// Ruta de salud
 app.get('/', (req, res) => {
   res.json({
     mensaje: 'API Gimnasio funcionando correctamente',
